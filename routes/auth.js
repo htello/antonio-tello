@@ -8,6 +8,8 @@ const { check } = require('express-validator')
 const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/authController')
 const { validarCampos } = require('../middlewares/validarCampos')
 const { validarJWT } = require('../middlewares/validarJWT')
+
+
 const router = Router()
 
 //crear nuevo usuario
