@@ -22,6 +22,7 @@ app.use(express.json());
 //TODO auths - crear editar rew
 app.use('/api/auth', require('./routes/auth'))
 //TODO crud - eventos
+app.use('/api/pintura', require('./routes/pintura'))
 
 
 

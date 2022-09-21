@@ -95,10 +95,7 @@ const loginUsuario = async (req, res = response) => {
 
 const revalidarToken = async (req, res = response) => {
 
-
-
     const { uid, name } = req
-
 
     //generar nuevo JWT y retornarlo en la peticion
 
