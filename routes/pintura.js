@@ -11,7 +11,7 @@ const { check } = require('express-validator');
 const { validarJWT } = require("../middlewares/validarJWT");
 const { validarCampos } = require('../middlewares/validarCampos')
 const { getCuadros, aniadirCuadro, actualizarCuadro, eliminarCuadro } = require('../controllers/pinturaControllers');
-const { getColecciones, aniadirColeccion, actualizarColeccion, eliminarColeccion } = require('../controllers/coleccionesPinturaController');
+const { getColecciones, aniadirColeccion, actualizarColeccion, eliminarColeccion, } = require('../controllers/coleccionesPinturaController');
 
 const router = Router();
 
@@ -62,11 +62,24 @@ router.get('/colecciones', getColecciones)
 
 
 //Grear coleccion
-router.post('/colecciones', aniadirColeccion)
+router.post('/colecciones',
+    [
+        check('titulo', 'Introduce El titulo del cuadro').not().isEmpty(),
+        check('orden', 'Elige la posición').not().isEmpty(),
+        validarCampos
+
+    ],
+    aniadirColeccion)
 
 
 //Editar coleccion
-router.put('/colecciones/:id', actualizarColeccion)
+router.put('/colecciones/:id',
+    [
+        check('titulo', 'Introduce El titulo del cuadro').not().isEmpty(),
+        check('orden', 'Elige la posición').not().isEmpty(),
+        validarCampos
+
+    ], actualizarColeccion)
 
 //Eliminar coleccion
 router.delete('/colecciones/:id', eliminarColeccion)

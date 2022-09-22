@@ -1,18 +1,29 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose')
 
 const ColeccionSchema = new Schema({
+
     titulo: {
         type: String,
         required: true
     },
     comentario: {
-        type: String,
-
+        type: String
     },
-    order: {
-        type: String,
-        require: true
+    orden: {
+        type: Number,
+        required: true
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'Usuario',
+        required: true
     }
 })
 
-module.exports = model('Coleccion', ColeccionSchema);
+ColeccionSchema.method('toJSON', function () {
+    const { __v, _id, ...object } = this.toObject();
+    object.id = _id;
+    return object;
+})
+
+module.exports = model('Coleccion', ColeccionSchema)
